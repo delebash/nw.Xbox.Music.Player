@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <script>
+        var gui = require('nw.gui');
+        // Reference to window and tray
+        var win = gui.Window.get();
+        var tray;
+
+        onload = function () {
+            window.location.href = "http://music.xbox.com"
+            win.show();
+        }
+        // Get the minimize event
+        win.on('minimize', function () {
+            // Hide window
+            this.hide();
+
+            // Show tray
+            // Create a tray icon
+            var tray = new gui.Tray({ title: 'nwXbMusicPlayer', icon: 'img/music.png', tooltip : 'Play XboxMusic' });
+            // Give it a menu
+            var menu = new gui.Menu();
+            var miPausePlay =  new gui.MenuItem({
+                type: "normal",
+                icon: "img/media_controls_dark_play.png",
+                label: "Play/Pause",
+                click: function() {
+                    console.log("I'm clicked");
+                },
+                key: "s",
+                modifiers: "ctrl-alt",
+            });
+            var miPrev =  new gui.MenuItem({
+                type: "normal",
+                icon: "img/media_controls_dark_first.png",
+                label: "Previous",
+                click: function() {
+                    console.log("I'm clicked");
+                },
+                key: "s",
+                modifiers: "ctrl-alt",
+            });
+            var miNext =  new gui.MenuItem({
+                type: "normal",
+                icon: "img/media_controls_dark_last.png",
+                label: "Next",
+                click: function() {
+                    console.log("I'm clicked");
+                },
+                key: "s",
+                modifiers: "ctrl-alt",
+            });
+            var miMic =  new gui.MenuItem({
+                type: "normal",
+                icon: "img/gnome_volume_control.png",
+                label: "Mute",
+                click: function() {
+                    console.log("I'm clicked");
+                },
+                key: "s",
+                modifiers: "ctrl-alt",
+            });
+
+            menu.append(miPausePlay);
+            menu.append(miPrev);
+            menu.append(miNext);
+            menu.append(miMic);
+           // menu.append(miPrev);
+           // menu.append(miPrev);
+
+
+            tray.menu = menu;
+            // Show window and remove tray when clicked
+            tray.on('click', function () {
+                win.show();
+                this.remove();
+                tray = null;
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
