@@ -3,8 +3,8 @@ nwXbMusicPlayer
 
 node-webkit wrapper for music.xbox.com
 
-Just wraps the music.xbox.com site so that you can minimize it to your taskbar
-Only tested on windows 7
+Just wraps the music.xbox.com site so that you can minimize it to your taskbar.  
+Only tested on windows 7 x64  
 
 To compile you will need node installed  
 1. Download or Clone and unzip to a directory  
